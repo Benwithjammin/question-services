@@ -26,5 +26,4 @@ production:
   encoding: unicode
   pool: 5
   username: postgres
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
   host: localhost
