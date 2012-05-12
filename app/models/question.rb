@@ -2,6 +2,8 @@ class Question < ActiveRecord::Base
   belongs_to :user
   attr_accessible :title, :question_type, :user_id
 
+  scope :all_by_user_id, -> id { where { user_id == id }}
+
   QUESTION_TYPES = [ "text", "image" ]
 
   validates :title, presence: true
