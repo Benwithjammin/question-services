@@ -1,0 +1,11 @@
+class Question < ActiveRecord::Base
+  belongs_to :user
+  attr_accessible :title, :question_type, :user_id
+
+  QUESTION_TYPES = [ "text", "image" ]
+
+  validates :title, presence: true
+  validates :question_type, inclusion: QUESTION_TYPES
+  validates :user_id, inclusion: User.all.collect {|u| u.id}
+
+end
