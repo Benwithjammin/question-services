@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe Question do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  context "all_by_user_id scope should return expected question" do
+    let(:question) { Fabricate(:question) }
+    it { puts question.all_by_user_id }
+  end
+
 end
