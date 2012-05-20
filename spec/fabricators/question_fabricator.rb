@@ -1,4 +1,4 @@
 Fabricator(:question) do
-  question "MyString"
-  user_id 1
+  title { Forgery(:basic).text }
+  question_type "text"
 end

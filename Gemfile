@@ -14,6 +14,7 @@ end
 
 group :test, :development do
   gem 'fabrication'
+  gem 'forgery'
   gem 'rspec-rails'
 end
 
