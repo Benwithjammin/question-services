@@ -11,7 +11,14 @@ class Api::QuestionsController < ApplicationController
 
   def create
     @question = Question.new(params[:question])
+
+    unless params[:user_id].nil?
+      @question.user = User.find_by_id(params[:user_id]).nil? ? User.new : User.find_by_id(params[:user_id])
+    end
+
     @question.save
+
+    render status: 422 if !@question.errors.empty?
   end
 
   def by_user

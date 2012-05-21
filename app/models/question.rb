@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
 
   QUESTION_TYPES = [ "text", "image" ]
 
-  validates :title, presence: true
+  validates :title, :user, presence: true
   validates :question_type, inclusion: QUESTION_TYPES
-  validates_associated :user
+  validates_associated :user, message: "Supplied user does not exist"
 end
