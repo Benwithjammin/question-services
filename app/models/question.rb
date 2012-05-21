@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :title, :question_type, :user_id
+  attr_accessible :title, :question_type
 
   scope :all_by_user_id, -> id { where { user_id == id }}
 
@@ -8,5 +8,5 @@ class Question < ActiveRecord::Base
 
   validates :title, presence: true
   validates :question_type, inclusion: QUESTION_TYPES
-  validates :user_id, inclusion: { in: User.all.collect {|u| u.id}, message: "User id does not exist" }
+  validates_associated :user
 end
