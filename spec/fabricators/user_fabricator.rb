@@ -5,5 +5,5 @@ Fabricator(:user) do
 end
 
 Fabricator(:user_with_three_questions, from: :user) do
-  questions(count: 3) {|u| Fabricate(:question, user: u ) }
+  questions!(count: 3) {|u| Fabricate(:question, user: u ) }
 end
