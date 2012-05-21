@@ -6,6 +6,8 @@ class Api::UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.save
+
+    render status: 422 if !@user.errors.empty?
   end
 
 end
