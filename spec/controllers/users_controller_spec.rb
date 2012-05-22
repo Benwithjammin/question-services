@@ -16,7 +16,8 @@ describe Api::UsersController do
     it "invalid json returns 422" do
       request.env["HTTP_ACCEPT"] = "application/json"
 
-      post :create, user: user, content_type: 'application/json'
+      post :create, body: { user: user }, content_type: 'application/json'
+      puts response.body
     end
 
     it "valid user saves model" do
