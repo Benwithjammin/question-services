@@ -7,16 +7,11 @@ describe Api::UsersController do
     let(:user) { Fabricate.build(:user) }
 
     before(:each) do
-      #request.env['content-type'] = 'application/json'
-      #post :create, {  format: :json, name: user.name, email: user.email, password: "Four" }, content_type: 'application/json'
-      #post :create, user: {  name: user.name, email: user.email, password: "Four" }, content_type: 'application/json'
-      #post :create, format: :json, user: {  name: user.name, email: user.email, password: "Four" }, content_type: 'application/json'
+      request.env["HTTP_ACCEPT"] = "application/json"
     end
 
     it "invalid json returns 422" do
-      request.env["HTTP_ACCEPT"] = "application/json"
-
-      post :create, body: { user: user }, content_type: 'application/json'
+      post :create, { user: { name: user.name, email: user.email, password: "Pa55word"} }
       puts response.body
     end
 
