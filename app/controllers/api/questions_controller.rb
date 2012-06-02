@@ -24,7 +24,7 @@ class Api::QuestionsController < ApplicationController
   end
 
   def by_user
-    @questions = Question.all_by_user_id params[:id]
+    @questions = Question.by_user_id params[:id]
   end
 
 end

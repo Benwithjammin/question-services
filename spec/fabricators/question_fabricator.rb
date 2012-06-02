@@ -4,3 +4,7 @@ Fabricator(:question) do
   question_type "text"
 end
 
+Fabricator(:question_with_three_answers, from: :question) do
+  answers!(count: 3) {|q| Fabricate(:answer, question: q ) }
+end
+

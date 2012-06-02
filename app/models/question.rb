@@ -9,7 +9,6 @@ class Question < ActiveRecord::Base
   QUESTION_TYPES = [ "text", "image" ]
 
   validates :title, :user, presence: true
-  validates :answers, length: { minimum: 1 }
   validates :answers, length: { maximum: 26 }
   validates :question_type, inclusion: QUESTION_TYPES
   validates_associated :user, message: "Supplied user does not exist"

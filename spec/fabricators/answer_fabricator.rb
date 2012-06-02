@@ -1,4 +1,4 @@
 Fabricator(:answer) do
-  text "MyString"
-  question_id 1
+  question
+  text { Forgery(:basic).text }
 end
