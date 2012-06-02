@@ -28,7 +28,7 @@ describe Question do
       question.should have(1).errors_on(:title)
     end
 
-    context "question_type" do
+    describe "question_type" do
 
       it "'text' is valid" do
         question.question_type = "text"
@@ -48,7 +48,7 @@ describe Question do
 
     end
 
-    context "user" do
+    describe "user" do
 
       let(:user) { Fabricate(:user) }
       let(:question) { Fabricate(:question) }

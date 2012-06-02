@@ -7,7 +7,7 @@ describe User do
 
     let(:user) { Fabricate.build(:user) }
 
-    context "email" do
+    describe "email" do
 
       it "model should be valid if present" do
         user.should be_valid
@@ -29,7 +29,7 @@ describe User do
 
     end
 
-    context "password" do
+    describe "password" do
 
       it "model should be valid if present and 5 or more characters long" do
         user.password = "Pa55word"

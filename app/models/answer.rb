@@ -3,6 +3,6 @@ class Answer < ActiveRecord::Base
   belongs_to :question
 
   validates :text, :question, presence: true
-  validates_associated :question, message: "Supplied question does not exist"
+  #validates_associated :question, message: "Supplied question does not exist"
 
 end

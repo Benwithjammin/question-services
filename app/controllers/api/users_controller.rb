@@ -4,9 +4,6 @@ class Api::UsersController < ApplicationController
   skip_before_filter :require_header_auth_login, :only => [:create]
 
   def create
-
-    puts params
-
     @user = User.new(params[:user])
     @user.save
 

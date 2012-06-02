@@ -1,5 +1,5 @@
 Fabricator(:question) do
-  user
+  user!
   title { Forgery(:basic).text }
   question_type "text"
 end

@@ -1,8 +1,8 @@
 class Question < ActiveRecord::Base
+
+  attr_accessible :title, :question_type
   belongs_to :user
   has_many :answers
-  attr_accessible :title, :question_type
-  #accepts_nested_attributes_for :answers
 
   scope :by_user_id, -> id { where { user_id == id }}
 
