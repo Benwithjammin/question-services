@@ -21,7 +21,7 @@ describe Api::UsersController do
       end
 
       it "json result should contain errors" do
-        puts JSON.parse(response.body)["validation_errors"].should_not be_empty
+        JSON.parse(response.body)["validation_errors"].should_not be_empty
       end
 
     end

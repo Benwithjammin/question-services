@@ -10,14 +10,13 @@ class Api::QuestionsController < ApplicationController
   end
 
   def create
-
     @question = Question.new(params[:question])
 
     unless params[:answers].nil?
       params[:answers].each { |a| @question.add_answer(Answer.new(a)) }
     end
 
-    @question.set_user_by_user_id(params[:user_id])
+    @question.user = current_user
     @question.save
 
     render status: 422 if !@question.errors.empty?

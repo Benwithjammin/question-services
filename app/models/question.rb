@@ -18,10 +18,6 @@ class Question < ActiveRecord::Base
     self.answers.push(answer)
   end
 
-  def set_user_by_user_id(user_id)
-    unless user_id.nil?
-      self.user = User.find_or_initialize_by_id(user_id)
-    end
-  end
+  #self.user = User.find_or_initialize_by_id(user_id)
 
 end
