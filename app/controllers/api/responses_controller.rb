@@ -3,14 +3,8 @@ class Api::ResponsesController < ApplicationController
 
   def create
 
-    puts params
-
-    response = { user_id: params[:user_id], question_id: params[:question_id], answer_id: params[:answer_id] }
-
-    @response = Response.new(response)
-
-    @response.save
-
+    @response = Response.create_from_params(current_user, params)
+    render status: 422 if !@response.errors.empty?
 
   end
 
