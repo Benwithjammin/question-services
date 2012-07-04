@@ -5,9 +5,11 @@ class Question < ActiveRecord::Base
   has_many :answers
   has_many :responses
 
-  scope :by_user_id, -> id { where { user_id == id }}
-
   QUESTION_TYPES = [ "text", "image" ]
+
+  scope :by_user_id, -> id { where { user_id == id }}
+  scope :answered_by_user, -> id { joins { answers.responses }.where{ answers.responses.user_id >> id }.uniq }
+  scope :unanswered_by_user, -> id { joins { answers.responses }.where{ answers.responses.user_id << id }.count }
 
   validates :title, :user, presence: true
   validates :answers, length: { maximum: 26 }

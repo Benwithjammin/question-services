@@ -26,4 +26,12 @@ class Api::QuestionsController < ApplicationController
     @questions = Question.by_user_id params[:id]
   end
 
+  def answered_by_user
+    @questions = Question.answered_by_user params[:id]
+  end
+
+  def unanswered_by_user
+    @questions = Question.unanswered_by_user params[:id]
+  end
+
 end

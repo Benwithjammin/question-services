@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
+  def questions
+    Question.where(user_id: self.id)
+  end
+
 end

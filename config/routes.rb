@@ -5,6 +5,8 @@ QuestionServices::Application.routes.draw do
 
     resources :questions
     get "questions/by_user/:id" => "questions#by_user"
+    get "questions/answered_by_user/:id" => "questions#answered_by_user"
+    get "questions/unanswered_by_user/:id" => "questions#unanswered_by_user"
 
     resources :responses
 

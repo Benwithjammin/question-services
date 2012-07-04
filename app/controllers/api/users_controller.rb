@@ -10,4 +10,8 @@ class Api::UsersController < ApplicationController
     render status: 422 if !@user.errors.empty?
   end
 
+  def questions
+    current_user.questions
+  end
+
 end
