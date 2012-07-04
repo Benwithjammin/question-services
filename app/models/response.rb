@@ -10,9 +10,13 @@ class Response < ActiveRecord::Base
   validates_presence_of :question, message: "Question does not exist"
   validates_presence_of :answer, message: "Answer does not exist"
 
+  #TODO validate answer belongs to question, de-normalised a bit here.
+  #TODO validate user has not answered question before.
+
   def self.create_from_params(current_user, params)
 
     response = Response.new
+
     response.user = current_user
     response.update_attributes(params.slice("answer_id", "question_id"))
 

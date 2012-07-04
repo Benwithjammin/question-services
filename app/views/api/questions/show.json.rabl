@@ -1,5 +1,5 @@
 object @question
-attributes :id, :title, :question_type
+attributes :id, :title, :question_type, :responses
 child :answers do
-  attributes :id, :text
+  attributes :id, :text, :responses
 end

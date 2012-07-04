@@ -6,4 +6,8 @@ class Answer < ActiveRecord::Base
   validates :text, :question, presence: true
   #validates_associated :question, message: "Supplied question does not exist"
 
+  def responses
+    Response.where(answer_id: self.id).count
+  end
+
 end
