@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :email, :password, :password_confirmation
   has_many :questions
+  has_many :responses
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create

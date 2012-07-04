@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
   attr_accessible :title, :question_type
   belongs_to :user
   has_many :answers
+  has_many :responses
 
   scope :by_user_id, -> id { where { user_id == id }}
 
