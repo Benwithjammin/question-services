@@ -1,5 +1,5 @@
 collection @questions
 attributes :id, :title, :question_type
 child :answers do
-  attributes :id, :text
+  attributes :id, :text, :percentage
 end

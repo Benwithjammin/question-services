@@ -9,13 +9,13 @@ class Answer < ActiveRecord::Base
   validates :text, :question, presence: true
   #validates_associated :question, message: "Supplied question does not exist"
 
-  def responses
+  def percentage
     answer_count = Response.where(answer_id: self.id).count
     total =  Response.where(question.id == self.id).count
 
-    puts total
+    percentage = total != 0 ? (answer_count / total.to_f) * 100 : 0
 
-    return Math.percentage(answer_count, total)
+    return percentage.round(1)
   end
 
 end
