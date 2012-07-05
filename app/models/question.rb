@@ -9,7 +9,7 @@ class Question < ActiveRecord::Base
 
   scope :by_user_id, -> id { where { user_id == id }}
   scope :answered_by_user, -> id { joins { answers.responses }.where{ answers.responses.user_id >> id }.uniq }
-  scope :unanswered_by_user, -> id { joins { answers.responses }.where{ answers.responses.user_id << id }.count }
+  scope :unanswered_by_user, -> id { joins { answers.responses }.where{ answers.responses.user_id << id }.uniq }
 
   validates :title, :user, presence: true
   validates :answers, length: { maximum: 26 }
