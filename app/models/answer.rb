@@ -1,4 +1,7 @@
 class Answer < ActiveRecord::Base
+
+  include Math
+
   attr_accessible :text
   belongs_to :question
   has_many :responses
@@ -7,7 +10,12 @@ class Answer < ActiveRecord::Base
   #validates_associated :question, message: "Supplied question does not exist"
 
   def responses
-    Response.where(answer_id: self.id).count
+    answer_count = Response.where(answer_id: self.id).count
+    total =  Response.where(question.id == self.id).count
+
+    puts total
+
+    return Math.percentage(answer_count, total)
   end
 
 end

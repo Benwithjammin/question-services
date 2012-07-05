@@ -21,10 +21,6 @@ class Question < ActiveRecord::Base
     self.answers.push(answer)
   end
 
-  def responses
-    Response.where(question_id: self.id).count
-  end
-
   #self.user = User.find_or_initialize_by_id(user_id)
 
 end
