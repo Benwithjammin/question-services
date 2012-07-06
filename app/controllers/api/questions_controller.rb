@@ -28,6 +28,7 @@ class Api::QuestionsController < ApplicationController
 
   def answered_by_user
     @questions = Question.answered_by_user params[:id]
+    #@questions.each { | q | q.user_answer = current_user.id }
   end
 
   def unanswered_by_user
