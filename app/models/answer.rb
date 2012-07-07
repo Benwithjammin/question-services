@@ -1,10 +1,9 @@
 class Answer < ActiveRecord::Base
 
-  include Math
-
-  attr_accessible :text
+  attr_accessible :text, :order
   belongs_to :question
   has_many :responses
+  default_scope order: :order
 
   validates :text, :question, presence: true
   #validates_associated :question, message: "Supplied question does not exist"

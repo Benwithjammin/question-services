@@ -4,5 +4,5 @@ node(:image) do |q|
   q.image.nil? ? "" : q.image
 end
 child :answers do
-  attributes :id, :text, :percentage
+  attributes :id, :text, :order, :percentage
 end
