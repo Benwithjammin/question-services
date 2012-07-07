@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     username = request.headers["x-username"]
     password = request.headers["x-password"]
 
-    render :status => :unauthorized if login(username, password, true).nil?
+    render status: :unauthorized if login(username, password, true).nil?
   end
 
 end

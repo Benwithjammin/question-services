@@ -1,14 +1,13 @@
 class Question < ActiveRecord::Base
 
   attr_accessible :title, :question_type
+  attr_reader :user_answer
   belongs_to :user
   has_many :answers
   has_many :responses
 
   QUESTION_TYPES = [ "text", "image" ]
 
-  scope :by_user_id, -> id { where { user_id == id }}
-  scope :answered_by_user, -> id { joins { answers.responses }.where{ answers.responses.user_id >> id }.uniq.each{ |q| q.user_answer = 4 } }
   scope :unanswered_by_user, -> id { joins { answers.responses }.where{ answers.responses.user_id << id }.uniq }
 
   validates :title, :user, presence: true
@@ -21,10 +20,14 @@ class Question < ActiveRecord::Base
     self.answers.push(answer)
   end
 
-  @user_answer = 0
+  def self.by_user_id(user_id)
+     Question.where { user_id == user_id }.each{ |q| q.user_answer = user_id }
+  end
 
-  def user_answer
-    return @user_answer
+  def self.answered_by_user(user_id)
+    Question.joins { answers.responses }
+            .where{ answers.responses.user_id >> user_id }.uniq
+            .each{ |q| q.user_answer = user_id }
   end
 
   def user_answer=(user_id)
