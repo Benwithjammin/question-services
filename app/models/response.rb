@@ -9,6 +9,7 @@ class Response < ActiveRecord::Base
   validates_presence_of :user, message: "User does not exist"
   validates_presence_of :question, message: "Question does not exist"
   validates_presence_of :answer, message: "Answer does not exist"
+  validates_uniqueness_of :question_id, scope: :user_id, message: "User has already responded to this question"
 
   #TODO validate answer belongs to question, de-normalised a bit here.
   #TODO validate user has not answered question before.
