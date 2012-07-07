@@ -12,7 +12,6 @@ class Response < ActiveRecord::Base
   validates_uniqueness_of :question_id, scope: :user_id, message: "User has already responded to this question"
 
   #TODO validate answer belongs to question, de-normalised a bit here.
-  #TODO validate user has not answered question before.
 
   def self.create_from_params(current_user, params)
 
@@ -20,9 +19,6 @@ class Response < ActiveRecord::Base
 
     response.user = current_user
     response.update_attributes(params.slice("answer_id", "question_id"))
-
-    #ask Nick is the above update_attribs prefrered to below and and should this be on model?
-    #response.answer = Answer.find_by_id params[:answer_id]
 
     response.save
 
