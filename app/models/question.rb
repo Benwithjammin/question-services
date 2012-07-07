@@ -1,15 +1,13 @@
 class Question < ActiveRecord::Base
 
-  attr_accessible :title, :question_type
+  attr_accessible :title, :image
   attr_reader :user_answer
   belongs_to :user
   has_many :answers
-
-  QUESTION_TYPES = [ "text", "image" ]
+  default_scope order: :id
 
   validates :title, :user, presence: true
   validates :answers, length: { maximum: 26 }
-  validates :question_type, inclusion: QUESTION_TYPES
   validates_associated :user, message: "Supplied user does not exist"
 
   def add_answer(answer)
@@ -18,15 +16,15 @@ class Question < ActiveRecord::Base
   end
 
   def self.by_user_id(user_id)
-     Question.where { user_id == user_id }.each{ |q| q.user_answer = user_id }
+     Question.where { user_id == user_id }.each{ |q| q.user_answer = user_id }.each{|q| q.user_answer = user_id }
   end
 
   def self.answered_by_user(user_id)
-    Question.where { id >> Question.user_response_question_ids(user_id) }
+    Question.where { id >> Question.user_response_question_ids(user_id)}.each{|q| q.user_answer = user_id }
   end
 
   def self.unanswered_by_user(user_id)
-    Question.where { id << Question.user_response_question_ids(user_id) }
+    Question.where { id << Question.user_response_question_ids(user_id) }.each{|q| q.user_answer = user_id }
   end
 
   def user_answer=(user_id)
